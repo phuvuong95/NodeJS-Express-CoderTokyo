@@ -1,10 +1,14 @@
 var express = require('express');
 var app = express();
+var bodyParser = require('body-parser');
 
 var port = 3000;
 
 app.set('view engine', 'pug');
 app.set('views', './views');
+
+app.use(bodyParser.json()); //Đi kèm với module body-parser
+app.use(bodyParser.urlencoded({ extended: true })); //Đi kèm với mdule body-parser
 
 var users = [
     { id: 1, name: 'Thinh' },
@@ -32,6 +36,15 @@ app.get('/users/search', function(req, res){
     res.render('users/index',{
        users: matchedUsers 
     });
+});
+
+app.get('/users/create', function(req, res){
+    res.render('users/create');
+});
+
+app.post('/users/create', function(req, res){ //Dùng để trả lời khi nhận đc request
+    users.push(req.body);
+    res.redirect('/users');
 });
 
 app.listen(port, function(){
