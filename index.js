@@ -12,7 +12,8 @@ app.use(bodyParser.urlencoded({ extended: true })); //Đi kèm với mdule body-
 
 var users = [
     { id: 1, name: 'Thinh' },
-    { id: 2, name: 'Hung' }
+    { id: 2, name: 'Hung' },
+    { id: 3, name: 'Vuong' }
 ];
 
 app.get('/', function(req, res){  //get request: lấy dữ liệu và hiển thị lên trình duyệt
