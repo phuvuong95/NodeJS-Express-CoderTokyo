@@ -2,46 +2,19 @@ var express = require('express');
 var shortid = require('shortid');
 
 var db = require('../db');
+var controller = require('../controllers/user.controller');
 
 var router  = express.Router();
 
-router.get('/', function(req, res) {  //get request: lấy dữ liệu và hiển thị lên trình duyệt
-    res.render('users/index', {
-        users: db.get('users').value()
-    });
-});
+router.get('/', controller.index);
 
-router.get('/search', function(req, res) {
-    var q = req.query.q;
-    var matchedUsers = db.get('users').filter(function(user) {
-        return user.name.toLowerCase().indexOf(q.toLowerCase()) !== -1;
-    });
-    
-    res.render('users/index', {
-       users: matchedUsers
-    });
-});
+router.get('/search', controller.search);
 
-router.get('/create', function(req, res) {
-    res.render('users/create');
-});
+router.get('/create', controller.create);
 
-router.get('/:id', function(req, res){
-    var id = req.params.id;
+router.get('/:id', controller.get);
 
-    var user = db.get('users').find({ id: id }).value();
-    
-
-    res.render('users/view', {
-       user: user 
-    });
-});
-
-router.post('/create', function(req, res){ //Dùng để trả lời khi nhận đc request
-    req.body.id = shortid.generate();
-    db.get('users').push(req.body).write();
-    res.redirect('/users');
-});
+router.post('/create', controller.postCreate);
 
 
 module.exports = router;
