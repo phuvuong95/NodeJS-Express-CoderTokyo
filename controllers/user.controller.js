@@ -1,4 +1,5 @@
 var db = require('../db');
+var shortid = require('shortid');
 
 module.exports.index = function(req, res) {  //get request: lấy dữ liệu và hiển thị lên trình duyệt
     res.render('users/index', {
@@ -34,6 +35,22 @@ module.exports.get = function(req, res){
 
 module.exports.postCreate = function(req, res){ //Dùng để trả lời khi nhận đc request
     req.body.id = shortid.generate();
+    var errors = [];
+    if (!req.body.name){
+        errors.push('Name is required');
+    }
+
+    if (!req.body.phone){
+        errors.push('Phone is required');
+    }
+
+    if (errors.length){
+        res.render('users/create', {
+           errors: errors,
+           values: req.body
+        });
+        return; 
+    }
     db.get('users').push(req.body).write();
     res.redirect('/users');
 }

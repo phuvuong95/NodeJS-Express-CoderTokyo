@@ -1,5 +1,4 @@
 var express = require('express');
-var shortid = require('shortid');
 
 var db = require('../db');
 var controller = require('../controllers/user.controller');
