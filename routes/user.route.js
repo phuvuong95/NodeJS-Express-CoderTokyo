@@ -8,6 +8,11 @@ var router  = express.Router();
 
 router.get('/', controller.index);
 
+router.get('/cookie', function(req, res, next){
+    res.cookie('userID', 12345);
+    res.send('Hello');
+});
+
 router.get('/search', controller.search);
 
 router.get('/create', controller.create);
