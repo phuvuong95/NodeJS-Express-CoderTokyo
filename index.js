@@ -13,6 +13,8 @@ app.set('views', './views');
 app.use(bodyParser.json()); //Đi kèm với module body-parser
 app.use(bodyParser.urlencoded({ extended: true })); //Đi kèm với mdule body-parser
 
+app.use(express.static('public')); //Đường dẫn đến folder public chứa file css
+
 
 app.get('/', function(req, res){  //get request: lấy dữ liệu và hiển thị lên trình duyệt
     res.render('index', {
