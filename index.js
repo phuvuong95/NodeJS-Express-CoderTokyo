@@ -1,3 +1,6 @@
+require('dotenv').config();
+
+
 var express = require('express');
 var bodyParser = require('body-parser');
 var cookieParser = require('cookie-parser');
@@ -16,7 +19,7 @@ app.set('views', './views');
 
 app.use(bodyParser.json()); //Đi kèm với module body-parser
 app.use(bodyParser.urlencoded({ extended: true })); //Đi kèm với mdule body-parser
-app.use(cookieParser('alskdjlksajds'));
+app.use(cookieParser(process.env.SESSION_SECRET));
 
 app.use(express.static('public')); //Đường dẫn đến folder public chứa file css
 
