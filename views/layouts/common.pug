@@ -4,7 +4,7 @@ html
         link(rel="stylesheet", href="/styles/custom.css")
     body
         nav.navbar.navbar-expand-lg.navbar-light.bg-light
-            a.navbar-brand(href='#') Coders Tokyo
+            a.navbar-brand(href='#') Coders.Tokyo
             button.navbar-toggler(type='button', data-toggle='collapse', data-target='#navbarNavDropdown', aria-controls='navbarNavDropdown', aria-expanded='false', aria-label='Toggle navigation')
                 span.navbar-toggler-icon
             #navbarNavDropdown.collapse.navbar-collapse
@@ -13,6 +13,7 @@ html
                         a.nav-link(href='/') Home
                     li.nav-item
                         a.nav-link(href='/users') User
-
+            if user
+                p= user.name
         .container.pt-5
             block content 

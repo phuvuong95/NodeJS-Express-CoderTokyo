@@ -16,7 +16,7 @@ app.set('views', './views');
 
 app.use(bodyParser.json()); //Đi kèm với module body-parser
 app.use(bodyParser.urlencoded({ extended: true })); //Đi kèm với mdule body-parser
-app.use(cookieParser());
+app.use(cookieParser('alskdjlksajds'));
 
 app.use(express.static('public')); //Đường dẫn đến folder public chứa file css
 
